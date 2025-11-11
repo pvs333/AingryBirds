@@ -1,0 +1,183 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6025640246584990072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 150232956908220515}
+  - component: {fileID: 2835867089847266973}
+  - component: {fileID: 8632235587069635381}
+  - component: {fileID: 1680303924506362421}
+  - component: {fileID: 8062359821782619008}
+  - component: {fileID: 3921447873160745154}
+  - component: {fileID: 2985857722525930361}
+  - component: {fileID: 954970387429969643}
+  m_Layer: 0
+  m_Name: ML_System
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &150232956908220515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025640246584990072}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2070.6536, y: 1731.4083, z: -3.9944305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2835867089847266973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025640246584990072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81904e92a35b44db6b7801ec88c829e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slingshot: {fileID: 0}
+  targetArea: {fileID: 0}
+  collectingData: 1
+  maxStatesPerEpisode: 1000
+--- !u!114 &8632235587069635381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025640246584990072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d7df016d86e4142a4eecf2662ab614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 50
+  maxAngle: 180
+  maxForce: 100
+  maxObstacles: 30
+--- !u!114 &1680303924506362421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025640246584990072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4a558663466e40298a3f0fe3a6c2cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateVectorSize: 64
+  includeObstacleDetails: 1
+  maxObstaclesInVector: 20
+--- !u!114 &8062359821782619008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025640246584990072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cbb9596715e648ff9952604cddb9547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitTargetReward: 100
+  missTargetPenalty: -10
+  structuralDamageReward: 0.5
+  pigDestroyedReward: 200
+  levelCompleteReward: 1000
+  timePenalty: -0.1
+  efficiencyBonus: 50
+--- !u!114 &3921447873160745154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025640246584990072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6af733416c3424c9b9e329e70109b656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 0
+  useRandomActions: 0
+  usePythonServer: 1
+  pythonServerHost: localhost
+  pythonServerPort: 5004
+  connectionTimeout: 5
+  explorationRate: 0.1
+  explorationDecay: 0.995
+  minExplorationRate: 0.01
+  stateCollector: {fileID: 2835867089847266973}
+  preprocessor: {fileID: 8632235587069635381}
+  stateVectorConverter: {fileID: 1680303924506362421}
+  rewardCalculator: {fileID: 8062359821782619008}
+  slingshot: {fileID: 0}
+  modelPath: ../ML/models/trained_model.onnx
+--- !u!114 &2985857722525930361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025640246584990072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8fce3b891dc84e43b260cc2334265d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trainingEnabled: 1
+  maxEpisodes: 10000
+  currentEpisode: 0
+  autoRestartEpisodes: 1
+  episodeRestartDelay: 2
+  successfulEpisodes: 0
+  averageReward: 0
+  bestReward: -3.4028235e+38
+  totalSteps: 0
+  saveCheckpoints: 1
+  checkpointFrequency: 100
+  checkpointDirectory: ../ML/models/checkpoints
+  episodeRewards: []
+  episodeLengths: 
+  successRates: []
+  agentBrain: {fileID: 3921447873160745154}
+  gameManager: {fileID: 0}
+  levelSceneName: 
+--- !u!114 &954970387429969643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025640246584990072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c1250d1f8184101a6851b2eb22f70b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monitoringEnabled: 1
+  performanceCheckInterval: 10
+  performanceThreshold: 0.6
+  currentSuccessRate: 0
+  recentAverageReward: 0
+  performanceTrend: 0
+  performanceDropDetected: 0
+  retrainingRecommended: 0

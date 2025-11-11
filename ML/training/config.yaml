@@ -1,0 +1,84 @@
+# Training configuration for Angry Birds AI Agent
+
+# Training parameters
+training:
+  max_episodes: 10000
+  max_steps_per_episode: 1000
+  learning_rate: 0.0003
+  gamma: 0.99  # Discount factor
+  batch_size: 64
+  update_frequency: 4
+  target_update_frequency: 1000
+  
+  # Exploration parameters
+  exploration_rate_start: 1.0
+  exploration_rate_end: 0.01
+  exploration_decay: 0.995
+  
+  # Saving
+  save_frequency: 100  # Save every N episodes
+  checkpoint_dir: "../models"
+  log_dir: "../data/logs"
+
+# Network architecture
+network:
+  model_type: "actor_critic"  # Options: policy, dqn, actor_critic
+  state_dim: 64
+  action_dim: 2  # angle, force
+  hidden_dims: [256, 256, 128]
+  
+# Environment parameters
+environment:
+  # State features
+  include_bird_position: true
+  include_target_positions: true
+  include_obstacle_layout: true
+  include_previous_attempts: true
+  max_obstacles: 20
+  
+  # Action space
+  angle_range: [-90, 90]  # degrees
+  force_range: [0.0, 1.0]  # normalized
+  
+  # Episode termination
+  max_time: 30  # seconds
+  
+# Reward structure (Step 6)
+rewards:
+  hit_target: 100.0
+  miss_penalty: -10.0
+  structural_damage: 50.0  # per destroyed object
+  pig_destroyed: 200.0
+  level_complete: 1000.0
+  time_penalty: -0.1  # per second
+  efficiency_bonus: 50.0  # for using fewer birds
+  
+# Optimization
+optimization:
+  optimizer: "adam"
+  weight_decay: 0.0001
+  gradient_clip: 1.0
+  entropy_coefficient: 0.01  # For actor-critic
+  value_loss_coefficient: 0.5
+  
+# Replay buffer (for DQN)
+replay_buffer:
+  capacity: 100000
+  min_size: 1000  # Start training after this many experiences
+  
+# Unity ML-Agents communication
+unity:
+  port: 5004
+  timeout: 60
+  no_graphics: false  # Set to true for faster training
+  
+# Logging and monitoring
+logging:
+  tensorboard: true
+  print_frequency: 10  # Print stats every N episodes
+  metrics:
+    - "episode_reward"
+    - "episode_length"
+    - "success_rate"
+    - "average_damage"
+    - "exploration_rate"

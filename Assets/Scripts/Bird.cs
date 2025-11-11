@@ -100,7 +100,7 @@ public class Bird : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (State == BirdState.Thrown && rb.velocity.sqrMagnitude <= Constants.MinVelocity)
+        if (State == BirdState.Thrown && rb.linearVelocity.sqrMagnitude <= Constants.MinVelocity)
         {
             if (birdType != 3)
             {
@@ -159,7 +159,7 @@ public class Bird : MonoBehaviour
 
         Boosted = true;
 
-        rb.velocity *= 2.0f;
+        rb.linearVelocity *= 2.0f;
         spriteRenderer.sprite = spriteListBoost[0];
 
         audio.PlayOneShot(soundListBoost[0]);
@@ -191,8 +191,8 @@ public class Bird : MonoBehaviour
             bird.GetComponent<Bird>().OnThrow();
         }
 
-        duplicate1.GetComponent<Rigidbody2D>().velocity = new Vector2(rb.velocity.x, rb.velocity.y - 3f);
-        duplicate2.GetComponent<Rigidbody2D>().velocity = new Vector2(rb.velocity.x, rb.velocity.y + 3f);
+        duplicate1.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y - 3f);
+        duplicate2.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y + 3f);
 
         audio.PlayOneShot(soundListBoost[0]);
 
@@ -205,13 +205,13 @@ public class Bird : MonoBehaviour
 
         Boosted = true;
 
-        if (rb.velocity.y <= 0)
+        if (rb.linearVelocity.y <= 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, (rb.velocity.y * -1f) + 20);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, (rb.linearVelocity.y * -1f) + 20);
         }
         else
         {
-            rb.velocity = new Vector2(rb.velocity.x, (rb.velocity.y) + 20);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, (rb.linearVelocity.y) + 20);
         }
         GameObject eggObject = Instantiate(egg, new Vector2(transform.position.x, transform.position.y - 0.5f), transform.rotation);
         spriteRenderer.sprite = spriteListBoost[0];
@@ -331,14 +331,14 @@ public class Bird : MonoBehaviour
             }
             if (GameManager.Birds[GameManager.currentBirdIndex] != gameObject && State == BirdState.BeforeThrown && Random.Range(0, 2) == 1)
             {
-                if (rb.velocity.magnitude != 0)
+                if (rb.linearVelocity.magnitude != 0)
                 {
                     gameObject.transform.DOJump(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), 0.3f, 1, 0.3f);
                 }
             }
             else if (GameManager.Birds[GameManager.currentBirdIndex] != gameObject && State == BirdState.BeforeThrown)
             {
-                if (rb.velocity.magnitude != 0)
+                if (rb.linearVelocity.magnitude != 0)
                 {
                     gameObject.transform.DOJump(new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), 0.3f, 1, 0.3f);
                     gameObject.transform.DOLocalRotate(new Vector3(0, 0, 360), 0.3f, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear);

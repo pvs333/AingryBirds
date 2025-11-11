@@ -18,13 +18,13 @@ EditorUserSettings:
       value: 5b030500575151590b5c5d2642775d401515487a782b70637e701b64b7b66660
       flags: 0
     RecentlyUsedSceneGuid-4:
-      value: 5750075453575d0f5c5d0d7a13265c4442154b2b2d7a2265742c1c65b4b1626b
-      flags: 0
-    RecentlyUsedSceneGuid-5:
       value: 05090d5f5d5358580c0d0a7241740f444416412e7b2e72337c284b31e0e2643c
       flags: 0
-    RecentlyUsedSceneGuid-6:
+    RecentlyUsedSceneGuid-5:
       value: 5207565106510a5d085d0f2311775c444e4e1b2f2a7f2564297f1f6ab2b3663e
+      flags: 0
+    RecentlyUsedSceneGuid-6:
+      value: 5750075453575d0f5c5d0d7a13265c4442154b2b2d7a2265742c1c65b4b1626b
       flags: 0
     UnityRemoteCompression:
       value: 29617121
@@ -52,4 +52,6 @@ EditorUserSettings:
   m_VCHierarchyOverlayIcons: 1
   m_VCOtherOverlayIcons: 1
   m_VCAllowAsyncUpdate: 1
+  m_VCScanLocalPackagesOnConnect: 1
   m_ArtifactGarbageCollection: 1
+  m_CompressAssetsOnImport: 1
